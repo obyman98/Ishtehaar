@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorized, only: [:auto_login]
+  before_action :authorized, only: [:auto_login, :test]
 
   # REGISTER
   def create
@@ -23,7 +23,6 @@ class UsersController < ApplicationController
       render json: {error: "Invalid username or password"}
     end
   end
-
 
   def auto_login
     render json: @user

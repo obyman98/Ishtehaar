@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_143727) do
+ActiveRecord::Schema.define(version: 2022_01_12_200804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 2022_01_12_143727) do
     t.integer "age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "fullname"
+    t.boolean "active"
+    t.date "dob"
+    t.string "nic"
+    t.string "email"
+    t.string "role"
+    t.string "phone"
+    t.string "vehicle_id"
+    t.boolean "onboarding_complete"
+    t.string "driver_license_number"
+    t.string "driver_license_state"
+    t.string "driver_eld_id"
   end
 
 end
