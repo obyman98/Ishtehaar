@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorized, only: [:auto_login, :test]
+  before_action :authorized, only: [:auto_login]
 
   # REGISTER
   def create
