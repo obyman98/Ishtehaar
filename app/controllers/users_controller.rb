@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorized, only: [:auto_login, :create]
+  before_action :authorized, only: [:auto_login]
 
   # REGISTER
   def create
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :password, :age)
+    params.permit(:username, :password, :fullname, :email, :phone, :role)
   end
 
 end
