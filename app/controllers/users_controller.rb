@@ -4,12 +4,15 @@ class UsersController < ApplicationController
   # REGISTER
   def create
     @user = User.create(user_params)
-    if @user.valid?
-      token = encode_token({user_id: @user.id})
-      render json: {user: @user, token: token}
-    else
-      render json: {error: "Invalid username or password"}
-    end
+    params.require([:username, :password, :fullname, :email, :phone, :role])
+      if @user.valid?
+        token = encode_token({user_id: @user.id})
+        UserMailer.test(@user).deliver
+        render json: {user: @user, token: token}
+      else
+        render json: {error: "Invalid credentials"}
+      end
+
   end
 
   # LOGGING IN
@@ -27,6 +30,7 @@ class UsersController < ApplicationController
   def auto_login
     render json: @user
   end
+
 
   private
 
