@@ -8,9 +8,9 @@ class UsersController < ApplicationController
       if @user.valid?
         token = encode_token({user_id: @user.id})
         UserMailer.signup_confirmation(@user).deliver
-        render json: {user: @user, token: token}
+        render json: {user: @user, token: token}, status: 200
       else
-        render json: {error: "Invalid credentials"}
+        render json: {error: "Invalid credentials"}, status: 400
       end
 
   end
@@ -21,14 +21,14 @@ class UsersController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       token = encode_token({user_id: @user.id})
-      render json: {user: @user, token: token}
+      render json: {user: @user, token: token}, status: 200
     else
-      render json: {error: "Invalid username or password"}
+      render json: {error: "Invalid username or password"}, status: 400
     end
   end
 
   def auto_login
-    render json: @user
+    render json: @user, status: 200
   end
 
 
