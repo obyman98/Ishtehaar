@@ -36,14 +36,15 @@ Rails.application.configure do
 
   # Change mail delvery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.gmail.com",
-  #   port: 587,
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  #   user_name: "trans.ads.test",
-  #   password: "tJYE68hRMUuvuMj"
-  # }
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "trans.ads.test",
+    password: "tJYE68hRMUuvuMj",
+    domain: "damp-taiga-03240.herokuapp.com"
+  }
 
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: "localhost:3000"}
