@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     params.require([:username, :password, :fullname, :email, :phone, :role])
       if @user.valid?
         token = encode_token({user_id: @user.id})
-        UserMailer.signup_confirmation(@user).deliver
+        UserMailer.signup_confirmation(@user).deliver_later
         render json: {user: @user, token: token}, status: 200
       else
         render json: {error: "Invalid credentials"}, status: 400

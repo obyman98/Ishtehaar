@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, :email
 
   def generate_password_token!
     self.reset_password_token = generate_token
