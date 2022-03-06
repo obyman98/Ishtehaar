@@ -42,8 +42,7 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "trans.ads.test",
-    password: "tJYE68hRMUuvuMj",
-    domain: "damp-taiga-03240.herokuapp.com"
+    password: "tJYE68hRMUuvuMj"
   }
 
   # Specify what domain to use for mailer URLs
