@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get "/auto_login", to: "users#auto_login"
   post 'passwords/forgot', to: 'passwords#forgot'
   post 'passwords/reset', to: 'passwords#reset'
+  post 'ads/create', to: 'ads#create'
+  post 'ads/all', to: 'ads#get'
 end
