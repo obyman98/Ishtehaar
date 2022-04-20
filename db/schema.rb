@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_19_212624) do
+ActiveRecord::Schema.define(version: 2022_04_20_150439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_212624) do
 
   create_table "ads", force: :cascade do |t|
     t.string "title"
-    t.string "status"
+    t.text "status", default: "pending"
     t.string "comment"
     t.integer "count"
     t.date "schedule_date_start"
