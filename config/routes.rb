@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   post 'passwords/reset', to: 'passwords#reset'
   post 'ads/create', to: 'ads#create'
   post 'ads/all', to: 'ads#get'
+  post 'ads/pending', to: 'ads#pending'
+  post 'ads/approved', to: 'ads#approved'
+  post 'ads/rejected', to: 'ads#rejected'
+  post 'ads/update', to: 'ads#update'
 end
