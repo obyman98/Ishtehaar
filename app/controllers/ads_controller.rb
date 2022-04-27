@@ -15,7 +15,11 @@ class AdsController < ApplicationController
     @user = User.find(params[:user_id])
     params.require([:user_id])
     if @user.present?
-      @ads = @user.ads.where(status: 'pending')
+      if @user.role == 'admin'
+        @ads = Ad.all.where(status: 'pending')
+      else
+        @ads = @user.ads.where(status: 'pending')
+      end
       render json: {status: "Success", ads: @ads}, status: 200
     else
       render json: {error: "Invalid User ID!"}, status: 400
@@ -26,7 +30,11 @@ class AdsController < ApplicationController
     @user = User.find(params[:user_id])
     params.require([:user_id])
     if @user.present?
-      @ads = @user.ads.where(status: 'approved')
+      if @user.role == 'admin'
+        @ads = Ad.all.where(status: 'approved')
+      else
+        @ads = @user.ads.where(status: 'approved')
+      end
       render json: {status: "Success", ads: @ads}, status: 200
     else
       render json: {error: "Invalid User ID!"}, status: 400
@@ -37,7 +45,11 @@ class AdsController < ApplicationController
     @user = User.find(params[:user_id])
     params.require([:user_id])
     if @user.present?
-      @ads = @user.ads.where(status: 'rejected')
+      if @user.role == 'admin'
+        @ads = Ad.all.where(status: 'rejected')
+      else
+        @ads = @user.ads.where(status: 'rejected')
+      end
       render json: {status: "Success", ads: @ads}, status: 200
     else
       render json: {error: "Invalid User ID!"}, status: 400
