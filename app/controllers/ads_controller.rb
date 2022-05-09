@@ -5,6 +5,8 @@ class AdsController < ApplicationController
     @ad = Ad.create(ad_params)
     params.require([:title, :schedule_date_start, :schedule_date_end, :ad, :user_id])
     if @ad.valid?
+      @ad.url = @ad.ad_url
+      @ad.save
       render json: {status: "Success"}, status: 200
     else
       render json: {error: "Invalid Request!"}, status: 400
@@ -58,10 +60,26 @@ class AdsController < ApplicationController
 
   def update
     @ad = Ad.find(params[:id])
-    params.require([:id, :status, :comment])
+    params.require([:id, :status])
     if @ad.present?
       @ad.status = params[:status]
       @ad.comment = params[:comment]
+      @ad.save
+      render json: {status: "Success"}, status: 200
+    else
+      render json: {error: "Invalid Ad ID!"}, status: 400
+    end
+  end
+
+  def edit
+    @ad = Ad.find(params[:id])
+    params.require([:title, :schedule_date_start, :schedule_date_end, :ad, :user_id])
+    if @ad.present?
+      @ad.title = params[:title]
+      @ad.schedule_date_start = params[:schedule_date_start]
+      @ad.schedule_date_end = params[:schedule_date_end]
+      @ad.ad = params[:ad]
+      @ad.user_id = params[:user_id]
       @ad.save
       render json: {status: "Success"}, status: 200
     else

@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post 'ads/approved', to: 'ads#approved'
   post 'ads/rejected', to: 'ads#rejected'
   post 'ads/update', to: 'ads#update'
+  post 'ads/edit', to: 'ads#edit'
 end
