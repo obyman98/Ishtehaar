@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   post 'ads/rejected', to: 'ads#rejected'
   post 'ads/update', to: 'ads#update'
   post 'ads/edit', to: 'ads#edit'
+  post 'vehicles/create', to: 'vehicles#create'
+  post 'vehicles/pending', to: 'vehicles#pending'
+  post 'vehicles/approved', to: 'vehicles#approved'
+  post 'vehicles/rejected', to: 'vehicles#rejected'
+  post 'vehicles/update', to: 'vehicles#update'
 end
