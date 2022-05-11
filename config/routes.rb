@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   post 'vehicles/approved', to: 'vehicles#approved'
   post 'vehicles/rejected', to: 'vehicles#rejected'
   post 'vehicles/update', to: 'vehicles#update'
+  post 'vehicles/get', to: 'vehicles#get'
 end
