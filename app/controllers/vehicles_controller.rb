@@ -66,6 +66,20 @@ class VehiclesController < ApplicationController
     else
       render json: {error: "Invalid Ad ID!"}, status: 400
     end
+
+    def edit
+      @vehicle = Vehicle.find(params[:id])
+      params.require([:vin, :license_number_plate, :make, :model])
+      if @vehicle.present?
+        @vehicle.vin = params[:vin]
+        @vehicle.license_number_plate = params[:license_number_plate]
+        @vehicle.make = params[:make]
+        @vehicle.model = params[:model]
+        @vehicle.save
+        render json: {status: "Success"}, status: 200
+      else
+        render json: {error: "Invalid Ad ID!"}, status: 400
+      end
   end
 
 
