@@ -3,7 +3,7 @@ class VehiclesController < ApplicationController
 
   def create
     @vehicle = Vehicle.create(ad_params)
-    params.require([:vin, :license_number_plate, :make, :model])
+    params.require([:vin, :license_number_plate, :make, :model, :user_id])
     if @vehicle.valid?
       render json: {status: "Success"}, status: 200
     else
@@ -15,11 +15,7 @@ class VehiclesController < ApplicationController
     @user = User.find(params[:user_id])
     params.require([:user_id])
     if @user.present?
-      if @user.role == 'admin'
-        @vehicles = Vehicle.all.where(status: 'pending')
-      else
-        @vehicles = @user.vehicles.where(status: 'pending')
-      end
+      @vehicles = Vehicle.all.where(status: 'pending')
       render json: {status: "Success", vehicles: @vehicles}, status: 200
     else
       render json: {error: "Invalid User ID!"}, status: 400
@@ -30,11 +26,7 @@ class VehiclesController < ApplicationController
     @user = User.find(params[:user_id])
     params.require([:user_id])
     if @user.present?
-      if @user.role == 'admin'
-        @vehicles = Vehicle.all.where(status: 'approved')
-      else
-        @vehicles = @user.vehicles.where(status: 'approved')
-      end
+      @vehicles = Vehicle.all.where(status: 'approved')
       render json: {status: "Success", vehicles: @vehicles}, status: 200
     else
       render json: {error: "Invalid User ID!"}, status: 400
@@ -45,12 +37,19 @@ class VehiclesController < ApplicationController
     @user = User.find(params[:user_id])
     params.require([:user_id])
     if @user.present?
-      if @user.role == 'admin'
-        @vehicles = Vehicle.all.where(status: 'rejected')
-      else
-        @vehicles = @user.vehicles.where(status: 'rejected')
-      end
+      @vehicles = Vehicle.all.where(status: 'rejected')
       render json: {status: "Success", vehicles: @vehicles}, status: 200
+    else
+      render json: {error: "Invalid User ID!"}, status: 400
+    end
+  end
+
+  def get
+    @user = User.find(params[:user_id])
+    params.require([:user_id])
+    if @user.present?
+      @vehicle = @user.vehicles.last
+      render json: {status: "Success", vehicles: @vehicle}, status: 200
     else
       render json: {error: "Invalid User ID!"}, status: 400
     end
