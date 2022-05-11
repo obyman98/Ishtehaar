@@ -66,10 +66,11 @@ class VehiclesController < ApplicationController
     else
       render json: {error: "Invalid Ad ID!"}, status: 400
     end
+  end
 
     def edit
       @vehicle = Vehicle.find(params[:id])
-      params.require([:vin, :license_number_plate, :make, :model])
+      params.require([:id, :vin, :license_number_plate, :make, :model])
       if @vehicle.present?
         @vehicle.vin = params[:vin]
         @vehicle.license_number_plate = params[:license_number_plate]
@@ -80,7 +81,7 @@ class VehiclesController < ApplicationController
       else
         render json: {error: "Invalid Ad ID!"}, status: 400
       end
-  end
+    end
 
 
   private
