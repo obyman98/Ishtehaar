@@ -80,6 +80,8 @@ class AdsController < ApplicationController
       @ad.schedule_date_end = params[:schedule_date_end]
       @ad.ad = params[:ad]
       @ad.user_id = params[:user_id]
+      @ad.status = 'pending'
+      @ad.comment = ''
       @ad.save
       @ad.url = @ad.ad_url
       @ad.save
