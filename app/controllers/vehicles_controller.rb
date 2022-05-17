@@ -76,6 +76,8 @@ class VehiclesController < ApplicationController
         @vehicle.license_number_plate = params[:license_number_plate]
         @vehicle.make = params[:make]
         @vehicle.model = params[:model]
+        @vehicle.status = 'pending'
+        @vehicle.comment = ''
         @vehicle.save
         render json: {status: "Success"}, status: 200
       else
