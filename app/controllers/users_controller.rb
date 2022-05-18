@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       else
         render json: {error: "Invalid credentials"}, status: 400
       end
-
   end
 
   # LOGGING IN

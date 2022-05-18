@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_192420) do
+ActiveRecord::Schema.define(version: 2022_05_18_230412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2022_05_16_192420) do
     t.string "ad_data"
     t.bigint "user_id", null: false
     t.text "url"
+    t.text "eld_id"
     t.index ["user_id"], name: "index_ads_on_user_id"
   end
 
@@ -70,6 +71,17 @@ ActiveRecord::Schema.define(version: 2022_05_16_192420) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
+  create_table "elds", force: :cascade do |t|
+    t.text "identifier"
+    t.text "mac_address"
+    t.text "wifi_ssid"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_elds_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,5 +123,6 @@ ActiveRecord::Schema.define(version: 2022_05_16_192420) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ads", "users"
   add_foreign_key "companies", "users"
+  add_foreign_key "elds", "users"
   add_foreign_key "vehicles", "users"
 end

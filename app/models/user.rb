@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :ads
   has_many :vehicles
   has_one :company
+  has_many :elds
   has_secure_password
   validates_uniqueness_of :username, :email
 

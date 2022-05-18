@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  identifier: MyText
+  mac_address: MyText
+  wifi_ssid: MyText
+  wifi_password: 
+
+two:
+  identifier: MyText
+  mac_address: MyText
+  wifi_ssid: MyText
+  wifi_password: 

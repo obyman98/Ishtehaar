@@ -64,6 +64,9 @@ class AdsController < ApplicationController
     if @ad.present?
       @ad.status = params[:status]
       @ad.comment = params[:comment]
+      if params[:status] == 'approved'
+        @ad.eld_id = 1
+      end
       @ad.save
       render json: {status: "Success"}, status: 200
     else
