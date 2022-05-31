@@ -95,7 +95,7 @@ class AdsController < ApplicationController
 
   def assign
     @ad = Ad.find(params[:id])
-    params.require([:id, :eld_id, :user_id)
+    params.require([:id, :eld_id, :user_id])
     if @ad.present?
       @ad.eld_id = params[:eld_id]
       @ad.save
