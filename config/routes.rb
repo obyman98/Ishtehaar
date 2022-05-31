@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post 'ads/rejected', to: 'ads#rejected'
   post 'ads/update', to: 'ads#update'
   post 'ads/edit', to: 'ads#edit'
+  post 'ads/edit', to: 'ads#assign'
   post 'vehicles/create', to: 'vehicles#create'
   post 'vehicles/pending', to: 'vehicles#pending'
   post 'vehicles/approved', to: 'vehicles#approved'
@@ -22,4 +23,5 @@ Rails.application.routes.draw do
   post 'companies/create', to: 'companies#create'
   post 'eld/create', to: 'elds#create'
   post 'eld/get', to: 'elds#get'
+  post 'eld/get', to: 'elds#show'
 end
