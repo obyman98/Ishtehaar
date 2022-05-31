@@ -93,9 +93,21 @@ class AdsController < ApplicationController
     end
   end
 
+  def assign
+    @ad = Ad.find(params[:id])
+    params.require([:id, :eld_id, :user_id)
+    if @ad.present?
+      @ad.eld_id = params[:eld_id]
+      @ad.save
+      render json: {status: "Success"}, status: 200
+    else
+      render json: {error: "Invalid Ad ID!"}, status: 400
+    end
+  end
+
   private
 
   def ad_params
-    params.permit(:title, :schedule_date_start, :schedule_date_end, :ad, :user_id)
+    params.permit(:title, :schedule_date_start, :schedule_date_end, :ad, :user_id, :eld_id)
   end
 end
