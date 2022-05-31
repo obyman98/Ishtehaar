@@ -17,11 +17,6 @@ class EldsController < ApplicationController
     render json: {ads: @ad_urls}, status: 200
   end
 
-  def show
-    @drivers = User.all.where(role: 'driver').pluck(:id, :fullname)
-    render json: {ads: @drivers}, status: 200
-  end
-
   private
 
   def eld_params
