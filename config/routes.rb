@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post "/create", to: "users#create"
   get "/auto_login", to: "users#auto_login"
   post "/show", to: "users#show"
+  post "/drivers", to: "users#drivers"
   post 'passwords/forgot', to: 'passwords#forgot'
   post 'passwords/reset', to: 'passwords#reset'
   post 'ads/create', to: 'ads#create'

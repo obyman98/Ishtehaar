@@ -32,7 +32,12 @@ class UsersController < ApplicationController
 
   def show
     @drivers = User.all.where(role: 'driver').pluck(:id, :fullname)
-    render json: {ads: @drivers}, status: 200
+    render json: {drivers: @drivers}, status: 200
+  end
+
+  def drivers
+    @drivers = User.all.where(role: 'driver')
+    render json: {drivers: @drivers}, status: 200
   end
 
   private
