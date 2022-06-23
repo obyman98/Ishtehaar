@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'vehicles/get', to: 'vehicles#get'
   post 'vehicles/edit', to: 'vehicles#edit'
   post 'companies/create', to: 'companies#create'
+  post 'companies/get', to: 'companies#get'
   post 'eld/create', to: 'elds#create'
   post 'eld/get', to: 'elds#get'
 end
