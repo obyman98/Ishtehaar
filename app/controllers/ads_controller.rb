@@ -85,8 +85,7 @@ class AdsController < ApplicationController
       @ad.user_id = params[:user_id]
       @ad.status = 'pending'
       @ad.save
-      @ad.url = @ad.ad_url
-      @ad.save
+      @ad.update_attribute(:url, @ad.ad_url)
       render json: {status: "Success"}, status: 200
     else
       render json: {error: "Invalid Ad ID!"}, status: 400

@@ -37,4 +37,13 @@ class PasswordsController < ApplicationController
       render json: {error:  ['Link not valid or expired. Try generating a new link.']}, status: 401
     end
   end
+
+  def update
+    if params[:username].blank? or params[:password].blank? # check if email is present
+      return render json: {error: 'Email not present'}, status: 401
+    end
+
+    user = User.find_by(username: params[:username])
+    user.update_attribute(:password_digest, params[:password])
+  end
 end

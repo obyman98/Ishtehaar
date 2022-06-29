@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/drivers", to: "users#drivers"
   post 'passwords/forgot', to: 'passwords#forgot'
   post 'passwords/reset', to: 'passwords#reset'
+  post 'passwords/update', to: 'passwords#update'
   post 'ads/create', to: 'ads#create'
   post 'ads/all', to: 'ads#get'
   post 'ads/pending', to: 'ads#pending'
