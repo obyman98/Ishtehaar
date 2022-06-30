@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:auto_login]
 
+  attribute :active, default: -> { false }
+
   # REGISTER
   def create
     @user = User.create(user_params)
@@ -41,16 +43,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:id].blank? or params[:new_password].blank? # check if email is present
-      render json: {error: 'ID or Password not present'}, status: 401
+    if params[:id].blank? # check if email is present
+      render json: {error: 'ID not present'}, status: 401
     end
 
-    if @user && @user.authenticate(params[:password])
-      user = User.find(params[:id])
-      user.update_attribute(:password_digest, BCrypt::Password.create(params[:new_password]))
-      render json: {message: 'Password has been updated'}, status: 200
+    user = User.find(params[:id])
+    if user
+      user.update(user_params)
+      render json: {message: 'User details has been updated'}, status: 200
     else
-      render json: {error: 'Old password is not correct'}, status: 401
+      render json: {error: 'User not found....'}, status: 401
     end
   end
 

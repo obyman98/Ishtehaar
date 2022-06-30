@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/auto_login", to: "users#auto_login"
   post "/show", to: "users#show"
   post "/drivers", to: "users#drivers"
+  post "/update", to: "users#update"
   post 'passwords/forgot', to: 'passwords#forgot'
   post 'passwords/reset', to: 'passwords#reset'
   post 'passwords/update', to: 'passwords#update'
