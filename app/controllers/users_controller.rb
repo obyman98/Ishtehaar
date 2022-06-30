@@ -40,6 +40,20 @@ class UsersController < ApplicationController
     render json: {drivers: @drivers}, status: 200
   end
 
+  def update
+    if params[:id].blank? or params[:new_password].blank? # check if email is present
+      render json: {error: 'ID or Password not present'}, status: 401
+    end
+
+    if @user && @user.authenticate(params[:password])
+      user = User.find(params[:id])
+      user.update_attribute(:password_digest, BCrypt::Password.create(params[:new_password]))
+      render json: {message: 'Password has been updated'}, status: 200
+    else
+      render json: {error: 'Old password is not correct'}, status: 401
+    end
+  end
+
   private
 
   def user_params

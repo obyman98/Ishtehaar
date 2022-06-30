@@ -39,12 +39,17 @@ class PasswordsController < ApplicationController
   end
 
   def update
-    if params[:email].blank? or params[:password].blank? # check if email is present
-      render json: {error: 'Email or Password not present'}, status: 401
+    if params[:id].blank? or params[:password].blank? # check if email is present
+      render json: {error: 'ID or Password not present'}, status: 401
     end
 
-    user = User.find_by(email: params[:email])
-    user.update_attribute(:password_digest, BCrypt::Password.create(params[:password]))
-    render json: {message: 'Password has been updated'}, status: 200
+    user = User.find(params[:id])
+    if user && user.authenticate(params[:password])
+      user.update_attribute(:password_digest, BCrypt::Password.create(params[:new_password]))
+      render json: {message: 'Password has been updated'}, status: 200
+    else
+      render json: {error: 'Old password is not correct'}, status: 401
+    end
   end
+
 end
