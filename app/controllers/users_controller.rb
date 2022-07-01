@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:auto_login]
 
-  attribute :active, default: -> { false }
-
   # REGISTER
   def create
     @user = User.create(user_params)
@@ -51,6 +49,24 @@ class UsersController < ApplicationController
     if user
       user.update(user_params)
       render json: {message: 'User details has been updated'}, status: 200
+    else
+      render json: {error: 'User not found....'}, status: 401
+    end
+  end
+
+  def toggle
+    if params[:id].blank? # check if email is present
+      render json: {error: 'ID not present'}, status: 401
+    end
+
+    user = User.find(params[:id])
+    if user
+      if user.active
+        user.update_attribute(:active, false)
+      else
+        user.update_attribute(:active, true)
+      end
+      render json: {message: 'User status has been updated'}, status: 200
     else
       render json: {error: 'User not found....'}, status: 401
     end

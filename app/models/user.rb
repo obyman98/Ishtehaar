@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_secure_password
   validates_uniqueness_of :username, :email
 
+  attribute :active, default: -> { false }
+
   def generate_password_token!
     self.reset_password_token = generate_token
     self.reset_password_sent_at = Time.now.utc
