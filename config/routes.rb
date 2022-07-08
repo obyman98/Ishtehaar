@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post 'ads/update', to: 'ads#update'
   post 'ads/edit', to: 'ads#edit'
   post 'ads/assign', to: 'ads#assign'
+  post 'ads/get', to: 'ads#get'
   post 'vehicles/create', to: 'vehicles#create'
   post 'vehicles/pending', to: 'vehicles#pending'
   post 'vehicles/approved', to: 'vehicles#approved'
@@ -28,5 +29,4 @@ Rails.application.routes.draw do
   post 'companies/create', to: 'companies#create'
   post 'companies/get', to: 'companies#get'
   post 'eld/create', to: 'elds#create'
-  post 'eld/get', to: 'elds#get'
 end

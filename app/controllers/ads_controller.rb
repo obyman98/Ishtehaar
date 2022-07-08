@@ -104,6 +104,12 @@ class AdsController < ApplicationController
     end
   end
 
+  def get
+    @ad_urls = Ad.all.where(eld_id: params[:eld_id]).pluck(:id, :url)
+    params.require(:eld_id)
+    render json: {ads: @ad_urls}, status: 200
+  end
+
   private
 
   def ad_params
