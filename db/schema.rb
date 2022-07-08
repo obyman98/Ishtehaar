@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_230412) do
+ActiveRecord::Schema.define(version: 2022_07_07_093301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,18 @@ ActiveRecord::Schema.define(version: 2022_05_18_230412) do
     t.index ["user_id"], name: "index_elds_on_user_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
+    t.integer "ad_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "eld_id", null: false
+    t.bigint "ad_id", null: false
+    t.index ["ad_id"], name: "index_events_on_ad_id"
+    t.index ["eld_id"], name: "index_events_on_eld_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -124,5 +136,7 @@ ActiveRecord::Schema.define(version: 2022_05_18_230412) do
   add_foreign_key "ads", "users"
   add_foreign_key "companies", "users"
   add_foreign_key "elds", "users"
+  add_foreign_key "events", "ads"
+  add_foreign_key "events", "elds"
   add_foreign_key "vehicles", "users"
 end
