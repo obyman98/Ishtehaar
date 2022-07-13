@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   post 'companies/create', to: 'companies#create'
   post 'companies/get', to: 'companies#get'
   post 'eld/create', to: 'elds#create'
+  post 'events/create', to: 'events#create'
+  post 'events/query', to: 'events#query'
 end

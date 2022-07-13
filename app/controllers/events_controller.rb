@@ -4,10 +4,14 @@ class EventsController < ApplicationController
   def create
     @event = User.create(event_params)
     if @event.valid?
-      render json: {message: "Data successfully synced."}, status: 200
+      render json: {message: "Event successfully created."}, status: 200
     else
       render json: {error: "Invalid credentials"}, status: 400
     end
+  end
+
+  def query
+    byebug
   end
 
   private
