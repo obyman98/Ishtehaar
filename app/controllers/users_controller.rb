@@ -72,6 +72,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def get
+    @user = User.find_by(id: params[:user_id])
+
+    if @user.present?
+      render json: @user, status: 200
+    else
+      render json: {error: "Invalid username"}, status: 400
+    end
+  end
+
   private
 
   def user_params

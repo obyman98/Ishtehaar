@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/drivers", to: "users#drivers"
   post "/update", to: "users#update"
   post "/toggle", to: "users#toggle"
+  post "/get", to: "users#get"
   post 'passwords/forgot', to: 'passwords#forgot'
   post 'passwords/reset', to: 'passwords#reset'
   post 'passwords/update', to: 'passwords#update'
