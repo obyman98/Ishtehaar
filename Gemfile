@@ -23,6 +23,7 @@ gem 'shrine', '~> 3.3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'paperclip'
+gem 'activerecord-import'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
