@@ -15,7 +15,7 @@ class GenerateEventsJob < ApplicationJob
 
     JSON.parse(params['bulk_data']).each do |set|
       events << Event.new(count: set[1], lat: params['lat'], lng: params['lng'], location: location,
-                          eld_id: params['eld_id'], ad_id: 3, event_type: "BACKEND_PROCESSED")
+                          eld_id: params['eld_id'], ad_id: set[0], event_type: "BACKEND_PROCESSED")
     end
     Event.import events
   end
