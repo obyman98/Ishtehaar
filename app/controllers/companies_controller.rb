@@ -12,12 +12,22 @@ class CompaniesController < ApplicationController
   end
 
   def get
-
     if @user.role == 'admin'
       @companies = Company.all
       render json: {status: "Success", companies: @companies}, status: 200
     else
       render json: {error: "You don't have access..."}, status: 400
+    end
+  end
+
+  def user
+    @company_id = Company.find(params[:id])
+    @user = User.find(@company_id.user_id)
+    params.require([:id])
+    if @user.present?
+      render json: {status: "Success", vehicles: @user}, status: 200
+    else
+      render json: {error: "Invalid User ID!"}, status: 400
     end
   end
 
