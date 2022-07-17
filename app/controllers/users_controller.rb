@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorized, except: [:login]
+  before_action :authorized, except: [:login, :create]
 
   # REGISTER
   def create
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         UserMailer.signup_confirmation(@user).deliver_later
         render json: {user: @user, token: token}, status: 200
       else
-        render json: {error: "Invalid credentials"}, status: 400
+        render json: {error: @user.errors.full_messages}, status: 400
       end
   end
 
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :password, :fullname, :email, :phone, :role, :address, :hours)
+    params.permit(:username, :password, :fullname, :email, :phone, :role, :address, :hours, :nic)
   end
 
 end
