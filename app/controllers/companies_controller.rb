@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :authorized
+  before_action :authorized, except: [:create]
 
   def create
     @company = Company.create(company_params)
@@ -7,7 +7,7 @@ class CompaniesController < ApplicationController
     if @company.valid?
       render json: {status: "Success"}, status: 200
     else
-      render json: {error: "Invalid Request!"}, status: 400
+      render json: {error: @company.errors.full_messages}, status: 400
     end
   end
 
