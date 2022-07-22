@@ -113,6 +113,6 @@ class AdsController < ApplicationController
   private
 
   def ad_params
-    params.permit(:title, :schedule_date_start, :schedule_date_end, :ad, :user_id, :eld_id, :count)
+    params.permit(:title, :schedule_date_start, :schedule_date_end, :ad, :user_id, :eld_id, :duration)
   end
 end
