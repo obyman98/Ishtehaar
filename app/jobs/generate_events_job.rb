@@ -13,6 +13,9 @@ class GenerateEventsJob < ApplicationJob
     cmp_code = data['plus_code']['compound_code'].split
     location =  cmp_code.include?("Karachi") ? cmp_code[1..-3].join(' ') : cmp_code[1..-2].join(' ')
 
+    #Every 1000 meters = Rs 10
+    #Per minutes = Rs 2
+
     JSON.parse(params['bulk_data']).each do |set|
       events << Event.new(count: set[1], lat: params['lat'], lng: params['lng'], location: location,
                           eld_id: params['eld_id'], ad_id: set[0], event_type: "BACKEND_PROCESSED")
