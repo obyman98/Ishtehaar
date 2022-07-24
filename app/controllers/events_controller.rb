@@ -23,15 +23,16 @@ class EventsController < ApplicationController
 
   def graph
 
-    events = Event.all.where('duration > ?', 0).group(:ad_id, :duration).sum(:duration)
+    counts = Event.all.where('count > ?', 0).group(:ad_id, :count).sum(:count)
+    locations = Event.all.where('duration > ?', 0).group(:location).count(:location).to_a
     ads = Ad.all.pluck(:id,:title).to_h
 
-    graph_points = []
-    events.each do |event|
-      graph_points.append([ads[event[0][0]],event[1]])
+    count_points = []
+    counts.each do |event|
+      count_points.append([ads[event[0][0]],event[1]])
     end
 
-    render json: {data: graph_points, status: 200}, status: 200
+    render json: {counts: count_points, locations: locations, status: 200}, status: 200
   end
 
   def card
