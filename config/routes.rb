@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   post 'eld/create', to: 'elds#create'
   post 'events/create', to: 'events#create'
   post 'events/query', to: 'events#query'
+  post 'events/graph', to: 'events#graph'
+  post 'events/card', to: 'events#card'
 end

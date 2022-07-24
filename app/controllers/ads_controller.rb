@@ -105,7 +105,7 @@ class AdsController < ApplicationController
   end
 
   def get
-    @ad_urls = Ad.all.where(eld_id: params[:eld_id], status: "approved").pluck(:id, :url)
+    @ad_urls = Ad.all.where(eld_id: params[:eld_id], status: "approved", created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).pluck(:id, :url)
     params.require(:eld_id)
     render json: {ads: @ad_urls}, status: 200
   end
