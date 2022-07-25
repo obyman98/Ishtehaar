@@ -22,9 +22,14 @@ class EventsController < ApplicationController
   end
 
   def graph
+    if @user.role == 'admin'
+      counts = Event.all.where('count > ?', 0).group(:ad_id, :count).sum(:count)
+      locations = Event.all.where('duration > ?', 0).group(:location).count(:location).to_a
+    else
+      counts = Event.where(ad_id: @user.ads.ids).group(:ad_id).sum(:count)
+      locations = Event.where(ad_id: @user.ads.ids).group(:location).count(:location).to_a
+    end
 
-    counts = Event.all.where('count > ?', 0).group(:ad_id, :count).sum(:count)
-    locations = Event.all.where('duration > ?', 0).group(:location).count(:location).to_a
     ads = Ad.all.pluck(:id,:title).to_h
 
     count_points = []
@@ -36,7 +41,12 @@ class EventsController < ApplicationController
   end
 
   def card
-    cards = Event.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).pluck('SUM(duration)','SUM(count)')
+    if @user.role == 'admin'
+      cards = Event.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).pluck('SUM(duration)','SUM(count)')
+    else
+      cards = Event.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, ad_id: @user.ads.ids).pluck('SUM(duration)','SUM(count)')
+    end
+
 
     render json: {duration: cards[0][0], count: cards[0][1], status: 200}, status: 200
   end
