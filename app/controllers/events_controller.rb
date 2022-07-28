@@ -34,10 +34,15 @@ class EventsController < ApplicationController
 
     count_points = []
     counts.each do |event|
-      count_points.append([ads[event[0][0]],event[1]])
+      count_points.append({type: ads[event[0][0]], count: event[1]})
     end
 
-    render json: {counts: count_points, locations: locations, status: 200}, status: 200
+    location_points = []
+    locations.each do |event|
+      location_points.append({type: event[0], location: event[1]})
+    end
+
+    render json: {counts: count_points, locations: location_points, status: 200}, status: 200
   end
 
   def card
