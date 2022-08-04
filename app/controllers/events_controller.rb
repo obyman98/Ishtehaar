@@ -27,7 +27,8 @@ class EventsController < ApplicationController
       locations = Event.all.where('duration > ?', 0).group(:location).count(:location).to_a
     else
       counts = Event.where(ad_id: @user.ads.ids).group(:ad_id).sum(:count)
-      locations = Event.where(ad_id: @user.ads.ids).group(:location).count(:location).to_a
+      locations = Event.where(ad_id: @user.ads.ids).group(:location).count(
+        :location).to_a.sort_by{|x,y|y}.reverse[0..4]
     end
 
     ads = Ad.all.pluck(:id,:title).to_h
