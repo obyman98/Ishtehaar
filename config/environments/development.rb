@@ -42,7 +42,8 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "trans.ads.test",
-    password: "tJYE68hRMUuvuMj"
+    password: "erjdjtmgogbxhkzg",
+    enable_starttls_auth: true
   }
 
   # Specify what domain to use for mailer URLs
