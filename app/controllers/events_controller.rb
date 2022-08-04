@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
     count_points = []
     counts.each do |event|
-      count_points.append({type: ads[event[0][0]], count: event[1]})
+      count_points.append({type: ads[event[0]], count: event[1]})
     end
 
     location_points = []
