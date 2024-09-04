@@ -19,3 +19,27 @@ Istehaar is all about smart, mobile advertising. Instead of sticking ads in one 
 This project isn’t just a cool idea—it’s got real potential! We were stoked to receive pre-seed funding, giving us the boost we needed to think about taking Istehaar from a uni project to a real startup. 🚀
 
 ## How to Get Started 🏁
+
+1. **Clone the Repo:**
+   ```bash
+   git clone https://github.com/obyman98/Ishtehaar.git
+   cd istehaar
+   ```
+2. **Install Dependencies:**
+   `bundle install`
+4. **Set Up the Database:**
+   `rails db:create db:migrate`
+6. **Run the App:**
+   `rails server`
+
+## Future Plans 🌟
+
+We’ve got big dreams for Istehaar. With the initial funding, we’re looking at expanding features, refining our ad-targeting algorithms, and maybe even hitting the streets with a fleet of ad-driven vehicles!
+
+## Contributing 🤝
+
+Got ideas? Found a bug? Want to help us take Istehaar to the next level? Fork the repo, send us a pull request, or just drop a line—we’d love to collaborate!
+
+## License 📄
+
+This project is open-source, so feel free to use, modify, and share it as you see fit. Just give us a shout-out when you do! 😄
